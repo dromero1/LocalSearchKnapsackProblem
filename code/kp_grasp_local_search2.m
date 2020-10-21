@@ -28,7 +28,7 @@ stop = false;
 % Neighborhood search
 while stop == false
     stop = true;
-    b_move = [-1 -1];
+    b_move = [0 0];
     z_star = z;
     for i = 1:n
         if x(i) == true
