@@ -29,7 +29,7 @@ while toc - t0 <= 300
     [x,fea,iter] = kp_grasp_construct_solution(n,m,W,A,b,alpha);
     % Local search
     if fea == 1
-        [x,fea] = kp_grasp_local_search1(x,n,m,W,A,b);
+        [x,fea] = kp_grasp_local_search2(x,n,m,W,A,b);
     end
     % Save solution
     X(i,:) = x;
