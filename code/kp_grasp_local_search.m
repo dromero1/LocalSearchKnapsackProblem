@@ -19,7 +19,7 @@ x = x0;
 % Current resource consumption
 R = A*x0;
 
-% Current objetive values
+% Current objective values
 z = W*x0;
 
 % Stop condition
@@ -43,7 +43,7 @@ while stop == false
                             x(j) = true;
                             % Update resource consumption
                             R = R + A(:,j) - A(:,i);
-                            % New objetive values
+                            % New objective values
                             z = z_tmp;
                             % Update stop condition
                             stop = false;
