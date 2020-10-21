@@ -36,7 +36,7 @@ while stop == false
                     if R + A(:,j) - A(:,i) <= b
                         % New solution objetive values
                         z_tmp = z + W(:,j) - W(:,i);
-                        % Determine if new solution dominates old one
+                        % Determine if new solution dominates the old one
                         if prod(z_tmp>=z) == 1 && sum(z_tmp>z) >= 1
                             % Update solution
                             x(i) = false;
