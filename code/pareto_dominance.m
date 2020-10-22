@@ -22,7 +22,7 @@ for i = 1:n
     for j = 1:n
         if i ~= j
             if prod(Y(j,:)>=Y(i,:)) == 1 && sum(Y(j,:)>Y(i,:)) >= 1
-                D = [D; j];
+                D = [D; i];
             end
         end
     end

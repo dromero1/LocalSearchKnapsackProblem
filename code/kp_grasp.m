@@ -24,24 +24,32 @@ fc = 0;
 % Main loop
 t0 = toc;
 i = 1;
-while toc - t0 <= 300
+while toc - t0 <= 30 %300
     % Randomized constructive solution
-    [x,fea,iter] = kp_grasp_construct_solution(n,m,W,A,b,alpha);
-    % Local search
+    [x,fea,~] = kp_grasp_construct_solution(n,m,W,A,b,alpha);
     if fea == 1
-        [x,fea] = kp_grasp_local_search2(x,n,m,W,A,b);
-    end
-    % Save solution
-    X(i,:) = x;
-    Z(i,:) = [(W*x)' fea];
-    if fea == 1
-        fc = fc + 1;
-    end
-    i = i + 1;
-    % Display
-    if dbg == true
-        fprintf('GRASP Instance %d (alpha = %0.2f, ',ti,alpha);
-        fprintf('rep. = %d, feas. = %0.2f, iter = %d)\n',i,fea,iter);
+        % Local search
+        lX = kp_grasp_local_search1(x,n,m,W,A,b);
+        % Save local search solutions
+        ln = size(lX,1);
+        for j = 1:ln
+            lx = lX(j,:);
+            X(i,:) = lx;
+            fea = sum(A*lx' <= b)/m;
+            Z(i,:) = [(W*lx')' fea];
+            i = i + 1;
+            fc = fc + 1;
+            % Display
+            if dbg == true
+                fprintf('GRASP Instance %d (alpha = %0.2f, ',ti,alpha);
+                fprintf('rep. = %d, feas. = %0.2f)\n',i,fea);
+            end
+        end
+    else
+        % Save unfeasible solution
+        X(i,:) = x;
+        Z(i,:) = [(W*x)' fea];
+        i = i + 1;
     end
 end
 
