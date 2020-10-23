@@ -1,4 +1,4 @@
-function X = kp_grasp_local_search(x0,n,m,W,A,b)
+function X = kp_grasp_local_search(x0,n,m,W,A,b,t0,mt)
 %KP_GRASP_LOCAL_SEARCH KP GRASP local search
 %
 %   Inputs:
@@ -8,6 +8,8 @@ function X = kp_grasp_local_search(x0,n,m,W,A,b)
 %   W - Objective coefficients
 %   A - Constraint coefficients
 %   b - Resource capacity
+%   t0 - Initial time
+%   mt - Maximum execution time
 %
 %   Outputs:
 %   X - Pareto front of local search
@@ -24,7 +26,7 @@ sol = 1;
 % Index
 idx = 1;
 
-while sol >= 1
+while sol >= 1 && toc - t0 <= mt
     % Current solution
     x = X(idx,:)';
     % Current resource consumption
