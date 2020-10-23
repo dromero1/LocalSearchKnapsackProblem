@@ -90,6 +90,10 @@ while sol >= 1 && toc - t0 <= mt
     end
 end
 
+% Select solutions
+X = X(1:idx-1,:);
+Z = Z(1:idx-1,:);
+
 % Get non-dominated solutions
 [Ipo,~] = pareto_dominance(Z);
 X = X(Ipo,:);
