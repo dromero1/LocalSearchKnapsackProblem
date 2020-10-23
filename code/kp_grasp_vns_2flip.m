@@ -1,5 +1,5 @@
-function [found,x_star,R_delta,z_delta,X_nd,Z_nd] = kp_grasp_vns_n1(x0,n,W,A,R,b,z)
-%KP_GRASP_VNS KP GRASP variable neighborhood search neighborhood 1
+function [found,x_star,R_delta,z_delta,X_lnd,Z_lnd] = kp_grasp_vns_2flip(x0,n,W,A,R,b,z)
+%KP_GRASP_VNS_2FLIP KP GRASP variable neighborhood search 2-flip
 %
 %   Inputs:
 %   x0 - Solution
@@ -13,9 +13,10 @@ function [found,x_star,R_delta,z_delta,X_nd,Z_nd] = kp_grasp_vns_n1(x0,n,W,A,R,b
 %   Outputs:
 %   found - A better solution was found
 %   x_star - Improved solution
-%   z_star - Objective values of best solution found
-%   X_nd - Local non-dominated solution
-%   Z_nd - Objetive values of local non-dominated solutions
+%   R_delta - Change in resource consumption
+%   z_delta - Change in objective values
+%   X_lnd - Local non-dominated solution
+%   Z_lnd - Objetive values of local non-dominated solutions
 
 % Current solution
 x = x0;
@@ -31,12 +32,12 @@ z_delta = z.*0;
 % Best move so far
 b_move = [0 0];
 
-% Best solution found
+% Better solution found flag
 found = false;
 
 % Local non-dominated solutions
-X_nd = [];
-Z_nd = [];
+X_lnd = [];
+Z_lnd = [];
 
 % Explore neighborhood
 for i = 1:n
@@ -69,12 +70,12 @@ for i = 1:n
                         x_nd(i) = false;
                         x_nd(j) = true;
                         % Save local non-dominated solution
-                        X_nd = [X_nd; x_nd'];
-                        Z_nd = [Z_nd; z_prime'];
+                        X_lnd = [X_lnd; x_nd'];
+                        Z_lnd = [Z_lnd; z_prime'];
                         % Get non-dominated solutions
-                        [ND,~] = pareto_dominance(Z_nd);
-                        X_nd = X_nd(ND,:);
-                        Z_nd = Z_nd(ND,:);
+                        [ND,~] = pareto_dominance(Z_lnd);
+                        X_lnd = X_lnd(ND,:);
+                        Z_lnd = Z_lnd(ND,:);
                     end
                 end
             end

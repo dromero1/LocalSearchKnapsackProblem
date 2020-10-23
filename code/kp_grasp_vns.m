@@ -34,12 +34,12 @@ while sol >= 1 && toc - t0 <= mt
     % Current objective values
     z = W*x;
     % Local non-dominated solutions
-    X_nd = [];
-    Z_nd = [];
+    X_lnd = [];
+    Z_lnd = [];
     % Neighborhood search
     j = 1;
     while j <= 3
-        [found,x_star,R_delta,z_delta,X_nd,Z_nd] = kp_grasp_vns_n1(x,n,W,A,R,b,z);
+        [found,x_star,R_delta,z_delta,~,~] = kp_grasp_vns_2flip(x,n,W,A,R,b,z);
         if found == true
             % Update current solution
             x = x_star;
@@ -63,22 +63,22 @@ while sol >= 1 && toc - t0 <= mt
     % Number of global solutions
     ns = size(X,1);
     % Add solutions to explore
-    lnd = size(X_nd,1);
+    lnd = size(X_lnd,1);
     for i = 1:lnd
         % Solution to explore
-        x_nd = X_nd(i,:);
-        z_nd = Z_nd(i,:);
+        x_lnd = X_lnd(i,:);
+        z_lnd = Z_lnd(i,:);
         nd_flag = true;
         % Evaluate dominance
         for k = 1:ns
-            if prod(Z(k,:)>=z_nd) == 1 && sum(Z(k,:)>z_nd) >= 1
+            if prod(Z(k,:)>=z_lnd) == 1 && sum(Z(k,:)>z_lnd) >= 1
                 nd_flag = false;
                 break;
             end
         end
-        if ~ismember(x_nd,X,'rows') && nd_flag == true
-            X = [X; x_nd];
-            Z = [Z; z_nd];
+        if ~ismember(x_lnd,X,'rows') && nd_flag == true
+            X = [X; x_lnd];
+            Z = [Z; z_lnd];
             sol = sol + 1;
         end
     end
