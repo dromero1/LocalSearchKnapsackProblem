@@ -26,8 +26,8 @@ x_star = x;
 z_star = z;
 
 % Deltas
-R_delta = b.*0;
-z_delta = z.*0;
+R_delta = b*0;
+z_delta = z*0;
 
 % Best move so far
 b_move = [0 0];

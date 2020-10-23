@@ -39,7 +39,7 @@ while sol >= 1 && toc - t0 <= mt
     % Neighborhood search
     j = 1;
     while j <= 3
-        [found,x_star,R_delta,z_delta,~,~] = kp_grasp_vns_2flip(x,n,W,A,R,b,z);
+        [found,x_star,R_delta,z_delta,X_nd,Z_nd] = kp_grasp_vns_2flip(x,n,W,A,R,b,z);
         if found == true
             % Update current solution
             x = x_star;
@@ -52,6 +52,12 @@ while sol >= 1 && toc - t0 <= mt
         else
             j = j + 1;
         end
+        % Add local non-dominated solutions
+        X_lnd = [X_lnd; X_nd];
+        Z_lnd = [Z_lnd; Z_nd];
+        % Remove duplicates
+        [X_lnd,ix,~] = unique(X_lnd,'rows');
+        Z_lnd = Z_lnd(ix,:);
     end
     % Save improved solution
     X(idx,:) = x';
