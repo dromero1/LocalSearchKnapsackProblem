@@ -39,7 +39,6 @@ while sol >= 1 && toc - t0 <= mt
     % Neighborhood search
     j = 1;
     while j <= 3
-        % First neighborhood search
         [found,x_star,R_delta,z_delta,X_nd,Z_nd] = kp_grasp_vns_n1(x,n,W,A,R,b,z);
         if found == true
             % Update current solution
