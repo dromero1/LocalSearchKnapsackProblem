@@ -1,0 +1,92 @@
+function X = kp_grasp_vns(x0,n,m,W,A,b,t0,mt)
+%KP_GRASP_VNS KP GRASP variable neighborhood search
+%
+%   Inputs:
+%   x0 - Solution
+%   n - Number of items
+%   m - Number of constraints
+%   W - Objective coefficients
+%   A - Constraint coefficients
+%   b - Resource capacity
+%   t0 - Initial time
+%   mt - Maximum execution time
+%
+%   Outputs:
+%   X - Pareto front of local search
+
+% Solutions in pareto front
+X = x0';
+
+% Objetives values in pareto front
+Z = X*W';
+
+% Solutions to explore
+sol = 1;
+
+% Index
+idx = 1;
+
+while sol >= 1 && toc - t0 <= mt
+    % Current solution
+    x = X(idx,:)';
+    % Current resource consumption
+    R = A*x;
+    % Current objective values
+    z = W*x;
+    % Local non-dominated solutions
+    X_nd = [];
+    Z_nd = [];
+    % Neighborhood search
+    j = 1;
+    while j <= 3
+        % First neighborhood search
+        [found,x_star,R_delta,z_delta,X_nd,Z_nd] = kp_grasp_vns_n1(x,n,W,A,R,b,z);
+        if found == true
+            % Update current solution
+            x = x_star;
+            % Update resource consumption
+            R = R + R_delta;
+            % New objective values
+            z = z + z_delta;
+            % Update neighborhood counter
+            j = 1;
+        else
+            j = j + 1;
+        end
+    end
+    % Save improved solution
+    X(idx,:) = x';
+    Z(idx,:) = z;
+    % Update index
+    idx = idx + 1;
+    % Update explored solutions
+    sol = sol - 1;
+    % Number of global solutions
+    ns = size(X,1);
+    % Add solutions to explore
+    lnd = size(X_nd,1);
+    for i = 1:lnd
+        % Solution to explore
+        x_nd = X_nd(i,:);
+        z_nd = Z_nd(i,:);
+        nd_flag = true;
+        % Evaluate dominance
+        for k = 1:ns
+            if prod(Z(k,:)>=z_nd) == 1 && sum(Z(k,:)>z_nd) >= 1
+                nd_flag = false;
+                break;
+            end
+        end
+        if ~ismember(x_nd,X,'rows') && nd_flag == true
+            X = [X; x_nd];
+            Z = [Z; z_nd];
+            sol = sol + 1;
+        end
+    end
+end
+
+% Get non-dominated solutions
+[Ipo,~] = pareto_dominance(Z);
+X = X(Ipo,:);
+
+end

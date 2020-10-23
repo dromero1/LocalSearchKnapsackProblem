@@ -33,8 +33,8 @@ while toc - t0 <= mt
     % Randomized constructive solution
     [x,fea,~] = kp_grasp_construct_solution(n,m,W,A,b,alpha);
     if fea == 1
-        % Local search
-        lX = kp_grasp_local_search(x,n,m,W,A,b,t0,mt);
+        % Variable neighborhood search
+        lX = kp_grasp_vns(x,n,m,W,A,b,t0,mt);
         % Save local search solutions
         ln = size(lX,1);
         for j = 1:ln
