@@ -29,7 +29,7 @@ while toc - t0 <= 300
     [x,fea,~] = kp_grasp_construct_solution(n,m,W,A,b,alpha);
     if fea == 1
         % Local search
-        lX = kp_grasp_local_search1(x,n,m,W,A,b);
+        lX = kp_grasp_local_search(x,n,m,W,A,b);
         % Save local search solutions
         ln = size(lX,1);
         for j = 1:ln
@@ -38,7 +38,9 @@ while toc - t0 <= 300
             fea = sum(A*lx' <= b)/m;
             Z(i,:) = [(W*lx')' fea];
             i = i + 1;
-            fc = fc + 1;
+            if fea == 1
+                fc = fc + 1;
+            end
             % Display
             if dbg == true
                 fprintf('GRASP Instance %d (alpha = %0.2f, ',ti,alpha);

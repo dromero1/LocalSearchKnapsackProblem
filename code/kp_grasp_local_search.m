@@ -1,5 +1,5 @@
-function X = kp_grasp_local_search1(x0,n,m,W,A,b)
-%KP_GRASP_LOCAL_SEARCH1 KP GRASP local search 1
+function X = kp_grasp_local_search(x0,n,m,W,A,b)
+%KP_GRASP_LOCAL_SEARCH KP GRASP local search
 %
 %   Inputs:
 %   x - Solution
