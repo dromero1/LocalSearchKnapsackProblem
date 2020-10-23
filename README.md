@@ -1,4 +1,4 @@
-# RandomizedKnapsackProblem
+# LocalSearchKnapsackProblem
 
 Some randomized constructive approximations to the Pareto's front of a variant of the knapsack problem.
 
