@@ -127,4 +127,8 @@ while sol >= 1
     end
 end
 
+% Get non-dominated solutions
+[Ipo,~] = pareto_dominance(Z);
+X = X(Ipo,:);
+
 end

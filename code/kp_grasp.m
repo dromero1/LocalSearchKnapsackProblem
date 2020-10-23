@@ -24,7 +24,7 @@ fc = 0;
 % Main loop
 t0 = toc;
 i = 1;
-while toc - t0 <= 30 %300
+while toc - t0 <= 300
     % Randomized constructive solution
     [x,fea,~] = kp_grasp_construct_solution(n,m,W,A,b,alpha);
     if fea == 1
