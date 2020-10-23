@@ -57,7 +57,7 @@ while sol >= 1 && toc - t0 <= mt
                                 % Update stop condition
                                 stop = false;
                                 % Determine if new solution dominates the
-                                % solution
+                                % best solution
                                 if prod(z_prime>=z_star) == 1 && sum(z_prime>z_star) >= 1
                                     % Update solution
                                     b_move(1) = i;
