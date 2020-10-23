@@ -19,13 +19,15 @@ function [X,Z] = kp_grasp(ti,n,p,m,W,A,b,alpha,dbg)
 % Maximum execution time
 mt = 300;
 
+% Initial time
+t0 = toc;
+
 % Solutions
 X = false(1,n);
 Z = zeros(1,p+1);
 fc = 0;
 
 % Main loop
-t0 = toc;
 i = 1;
 while toc - t0 <= mt
     % Randomized constructive solution
@@ -40,10 +42,10 @@ while toc - t0 <= mt
             X(i,:) = lx;
             fea = sum(A*lx' <= b)/m;
             Z(i,:) = [(W*lx')' fea];
-            i = i + 1;
             if fea == 1
                 fc = fc + 1;
             end
+            i = i + 1;
             % Display
             if dbg == true
                 fprintf('GRASP Instance %d (alpha = %0.2f, ',ti,alpha);
