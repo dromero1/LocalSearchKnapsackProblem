@@ -38,11 +38,13 @@ while sol >= 1 && toc - t0 <= mt
     Z_lnd = [];
     % Neighborhood search
     j = 1;
-    while j <= 2
+    while j <= 3
         if j == 1
             [found,x_star,R_delta,z_delta,X_nd,Z_nd] = kp_grasp_vns_1flip(x,n,W,A,R,b,z);
-        else
+        elseif j == 2
             [found,x_star,R_delta,z_delta,X_nd,Z_nd] = kp_grasp_vns_2flip(x,n,W,A,R,b,z);
+        else
+            [found,x_star,R_delta,z_delta,X_nd,Z_nd] = kp_grasp_vns_21flip(x,n,W,A,R,b,z);
         end
         if found == true
             % Update current solution
