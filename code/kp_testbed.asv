@@ -47,7 +47,7 @@ for i = 1:IC
     % Objectives count
     p = cr(3);
     % Constraints coefficients
-    cA = P_raw(2:m+1,1:n);
+    A = P_raw(2:m+1,1:n);
     % Resources capacity
     b = P_raw(2:m+1,n+1);
     % Objective coefficients
@@ -60,15 +60,15 @@ for i = 1:IC
     for alpha = [0.05 0.15 0.25]
         % Get solutions
         tic
-        [X,Z] = kp_grasp(i,n,p,m,W,cA,b,alpha,dbg);
+        [X,Z] = kp_grasp(i,n,p,m,W,A,b,alpha,dbg);
         time = toc;
         % Save results
-        mr.mid = mid;
-        mr.mtd = sprintf('G-%0.2f',alpha);
-        mr.X = X;
-        mr.Z = Z;
-        mr.t = time;
-        MR = [MR; mr];
+        ms.mid = mid;
+        ms.mtd = sprintf('G-%0.2f',alpha);
+        ms.X = X;
+        ms.Z = Z;
+        ms.t = time;
+        MR = [MR; ms];
         % Update method instance id
         mid = mid + 1;
     end
@@ -94,7 +94,6 @@ for i = 1:IC
     [Ipo,~] = pareto_dominance(Z);
     PX = X(Ipo,:);
     PZ = Z(Ipo,:);
-    cP = size(PX,1);
     % Upper bound
     ub = abs(W)*ones(n,1);
     % Instance statistics
@@ -104,34 +103,31 @@ for i = 1:IC
     fprintf('Number of pareto-optimal solutions: %d\n',size(PX,1));
     fprintf('Number of feasible solutions in pareto front: %d\n',sum(PZ(:,p+1)==1));
     for j = 1:length(MR)
-        % Method's results
-        mr = MR(j,:);
-        % Solution count
-        cA = size(mr.Z,1);
-        cF = sum(mr.Z(:,p+1)==1);
-        % Solutions in Pareto Front
-        IAP = intersect(mr.X,PX,'rows');
-        cAP = size(IAP,1);
         % Calculate statistics
-        i1 = cAP / cP;
-        i2 = cAP / cA;
+        ms = MR(j,:);
+        num_solutions = size(ms.Z,1);
+        num_feasible = sum(ms.Z(:,p+1)==1);
+        inPareto = intersect(ms.X,PX,'rows');
+        solutions_in_pareto = size(inPareto,1);
+        i1 = solutions_in_pareto / size(PX,1);
+        i2 = solutions_in_pareto / num_solutions;
         % Distance to upper bound
-        Z_prime = mr.Z';
+        Z_prime = ms.Z';
         Z_prime = Z_prime(1:p,:);
         dist_2_ub = (ub-Z_prime)./ub;
-        md2ub = mean(dist_2_ub,'all');
+        mean_dist_2_ub = mean(dist_2_ub,'all');
         % Save statistics
-        rT(i,mr.mid) = mr.t;
-        rS(i,mr.mid) = cA;
-        rF(i,mr.mid) = cF;
-        rFS(i,mr.mid) = cF / cA;
-        rI1(i,mr.mid) = i1;
-        rI2(i,mr.mid) = i2;
-        rDU(i,mr.mid) = md2ub;
+        rT(i,ms.mid) = ms.t;
+        rS(i,ms.mid) = num_solutions;
+        rF(i,ms.mid) = num_feasible;
+        rFS(i,ms.mid) = num_feasible / num_solutions;
+        rI1(i,ms.mid) = i1;
+        rI2(i,ms.mid) = i2;
+        rDU(i,ms.mid) = mean_dist_2_ub;
         % Display
-        fprintf('Method %s (time = %0.2f, sol. = %d, ',mr.mtd,mr.t,cA);
-        fprintf('fea. = %d, md2ub = %0.2f, ',cF,md2ub)
-        fprintf('I1 = %0.2f, I2 = %0.2f)\n',i1,i2);
+        fprintf('Method %s (time = %0.2f, sol. = %d, ',ms.mtd,ms.t,num_solutions);
+        fprintf('fea. = %d, md2ub = %0.2f, ',num_feasible,mean_dist_2_ub)
+        fprintf('I1 = %0.2f, I2 =%0.2f)\n',i1,i2);
     end
     %% Download results
     nsol = size(PX,1);
@@ -140,7 +136,7 @@ for i = 1:IC
     O(1,1) = nsol;
     for j = 1:nsol
         x = PX(j,:);
-        sline = [sum(x) find(x) (cA*x')' (W*x')'];
+        sline = [sum(x) find(x) (A*x')' (W*x')'];
         O(j+1,1:length(sline)) = sline;
     end
     % Write solutions to output file
