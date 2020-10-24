@@ -47,7 +47,7 @@ for i = 1:IC
     % Objectives count
     p = cr(3);
     % Constraints coefficients
-    cA = P_raw(2:m+1,1:n);
+    A = P_raw(2:m+1,1:n);
     % Resources capacity
     b = P_raw(2:m+1,n+1);
     % Objective coefficients
@@ -60,7 +60,7 @@ for i = 1:IC
     for alpha = [0.05 0.15 0.25]
         % Get solutions
         tic
-        [X,Z] = kp_grasp(i,n,p,m,W,cA,b,alpha,dbg);
+        [X,Z] = kp_grasp(i,n,p,m,W,A,b,alpha,dbg);
         time = toc;
         % Save results
         mr.mid = mid;
@@ -140,7 +140,7 @@ for i = 1:IC
     O(1,1) = nsol;
     for j = 1:nsol
         x = PX(j,:);
-        sline = [sum(x) find(x) (cA*x')' (W*x')'];
+        sline = [sum(x) find(x) (A*x')' (W*x')'];
         O(j+1,1:length(sline)) = sline;
     end
     % Write solutions to output file
