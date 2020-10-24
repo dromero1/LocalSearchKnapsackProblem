@@ -118,8 +118,8 @@ for i = 1:IC
         % Distance to upper bound
         Z_prime = mr.Z';
         Z_prime = Z_prime(1:p,:);
-        dist_2_ub = (ub-Z_prime)./ub;
-        md2ub = mean(dist_2_ub,'all');
+        d2ub = (ub-Z_prime)./ub;
+        md2ub = mean(d2ub,'all');
         % Save statistics
         rT(i,mr.mid) = mr.t;
         rS(i,mr.mid) = cA;
