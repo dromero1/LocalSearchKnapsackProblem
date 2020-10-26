@@ -1,5 +1,5 @@
-function [found,x_star,R_delta,z_delta,X_lnd,Z_lnd] = kp_grasp_vns_1flip(x0,n,W,A,R,b,z)
-%KP_GRASP_VNS_1FLIP KP GRASP variable neighborhood search 1-flip
+function [found,x_star,R_delta,z_delta,X_lnd,Z_lnd] = kp_grasp_vnd_1flip(x0,n,W,A,R,b,z)
+%KP_GRASP_VND_1FLIP KP GRASP variable neighborhood descent 1-flip
 %
 %   Inputs:
 %   x0 - Solution
