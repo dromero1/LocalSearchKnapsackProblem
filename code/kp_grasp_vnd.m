@@ -36,7 +36,7 @@ while sol >= 1 && toc - t0 <= mt
     % Local non-dominated solutions
     X_lnd = [];
     Z_lnd = [];
-    % Neighborhood search
+    % Variable neighborhood search
     j = 1;
     while j <= 3 && toc - t0 <= mt
         if j == 1
