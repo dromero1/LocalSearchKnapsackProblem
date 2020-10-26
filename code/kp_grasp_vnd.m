@@ -1,5 +1,5 @@
-function X = kp_grasp_vns(x0,n,m,W,A,b,t0,mt)
-%KP_GRASP_VNS KP GRASP variable neighborhood search
+function X = kp_grasp_vnd(x0,n,m,W,A,b,t0,mt)
+%KP_GRASP_VND KP GRASP variable neighborhood descent
 %
 %   Inputs:
 %   x0 - Solution
