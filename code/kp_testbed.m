@@ -57,21 +57,21 @@ for i = 1:IC
     MR = [];
     mid = 1;
     % GRASP method
-%     for alpha = [0.05 0.15 0.25]
-%         % Get solutions
-%         tic
-%         [X,Z] = kp_grasp(i,n,p,m,W,A,b,alpha,dbg);
-%         time = toc;
-%         % Save results
-%         mr.mid = mid;
-%         mr.mtd = sprintf('G-%0.2f',alpha);
-%         mr.X = X;
-%         mr.Z = Z;
-%         mr.t = time;
-%         MR = [MR; mr];
-%         % Update method instance id
-%         mid = mid + 1;
-%     end
+    for alpha = [0.05 0.15 0.25]
+        % Get solutions
+        tic
+        [X,Z] = kp_grasp(i,n,p,m,W,A,b,alpha,dbg);
+        time = toc;
+        % Save results
+        mr.mid = mid;
+        mr.mtd = sprintf('G-%0.2f',alpha);
+        mr.X = X;
+        mr.Z = Z;
+        mr.t = time;
+        MR = [MR; mr];
+        % Update method instance id
+        mid = mid + 1;
+    end
     % MS-ILS GRASP method
     for alpha = [0.05 0.15 0.25]
         % Get solutions
