@@ -49,6 +49,10 @@ while toc - t0 <= mt
             Z_lnd = [];
             % Perturbations
             for k = 1:pt
+                % Check time
+                if toc - t0 > mt
+                   break; 
+                end
                 % Perturb solution
                 x_prime = kp_perturb(x_star,n);
                 % Determine if the pertubated solution is feasible
