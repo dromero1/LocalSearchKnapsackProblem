@@ -99,13 +99,13 @@ while toc - t0 <= mt
             % Save local non-dominated solutions
             n_lnd = size(X_lnd,1);
             for r = 1:n_lnd
-                % Save local non-dominated solution
+                % Local non-dominated solution
                 x_lnd = X_lnd(r,:);
                 z_lnd = Z_lnd(r,:);
                 X(i,:) = x_lnd;
                 % Determine feasibility
                 fea = sum(A*x_lnd' <= b)/m;
-                % Save local non-dominated objective values
+                % Local non-dominated objective values
                 Z(i,:) = [z_lnd fea];
                 if fea == 1
                     fc = fc + 1;
