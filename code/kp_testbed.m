@@ -22,7 +22,7 @@ input_file = 'files/Input.xlsx';
 output_file = 'files/Output.xlsx';
 
 % Debug mode
-dbg = true;
+dbg = false;
 
 %% Results
 rT = zeros(IC,1);
