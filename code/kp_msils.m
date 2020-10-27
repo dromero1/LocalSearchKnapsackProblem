@@ -82,7 +82,7 @@ while toc - t0 <= mt
             % Save ILS-improved solution
             X(i,:) = x_star';
             fea = sum(A*x_star <= b)/m;
-            Z(i,:) = [(W*x_star)' fea];
+            Z(i,:) = [z_star' fea];
             if fea == 1
                 fc = fc + 1;
             end
