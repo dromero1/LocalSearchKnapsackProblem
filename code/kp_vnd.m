@@ -80,8 +80,8 @@ while sol >= 1 && toc - t0 <= mt
         % Solution to explore
         x_lnd = X_lnd(i,:);
         z_lnd = Z_lnd(i,:);
-        nd_flag = true;
         % Evaluate dominance
+        nd_flag = true;
         for k = 1:ns
             if prod(Z(k,:)>=z_lnd) == 1 && sum(Z(k,:)>z_lnd) >= 1
                 nd_flag = false;

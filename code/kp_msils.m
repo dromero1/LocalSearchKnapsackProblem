@@ -66,12 +66,12 @@ while toc - t0 <= mt
                         z_prime = W*x_prime';
                         % Determine if the twice-improved solution
                         % dominates the local optimum
-                        if prod(z_star>=z_prime) == 1 && sum(z_star>z_prime) >= 1
+                        if prod(z_prime>=z_star) == 1 && sum(z_prime>z_star) >= 1
                             x_star = x_prime';
                             z_star = z_prime;
                             % Determine if the the twice-improved solution
                             % is not dominated by the local optimum
-                        elseif ~(prod(z_star>=z_prime) == 1 && sum(z_star>z_prime) >= 1)
+                        elseif ~(prod(z_prime>=z_star) == 1 && sum(z_prime>z_star) >= 1)
                             % Save local non-dominated solution
                             X_lnd = [X_lnd; x_prime];
                             Z_lnd = [Z_lnd; z_prime'];
