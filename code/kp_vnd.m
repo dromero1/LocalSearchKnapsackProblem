@@ -40,11 +40,11 @@ while sol >= 1 && toc - t0 <= mt
     j = 1;
     while j <= 3 && toc - t0 <= mt
         if j == 1
-            [found,x_star,R_delta,z_delta,X_nd,Z_nd] = kp_grasp_vnd_1flip(x,n,W,A,R,b,z);
+            [found,x_star,R_delta,z_delta,X_nd,Z_nd] = kp_vnd_1flip(x,n,W,A,R,b,z);
         elseif j == 2
-            [found,x_star,R_delta,z_delta,X_nd,Z_nd] = kp_grasp_vnd_2flip(x,n,W,A,R,b,z);
+            [found,x_star,R_delta,z_delta,X_nd,Z_nd] = kp_vnd_2flip(x,n,W,A,R,b,z);
         else
-            [found,x_star,R_delta,z_delta,X_nd,Z_nd] = kp_grasp_vnd_21flip(x,n,W,A,R,b,z);
+            [found,x_star,R_delta,z_delta,X_nd,Z_nd] = kp_vnd_21flip(x,n,W,A,R,b,z);
         end
         if found == true
             % Update current solution

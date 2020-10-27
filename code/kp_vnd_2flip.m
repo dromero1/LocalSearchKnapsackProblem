@@ -1,5 +1,5 @@
-function [found,x_star,R_delta,z_delta,X_lnd,Z_lnd] = kp_grasp_vnd_2flip(x0,n,W,A,R,b,z)
-%KP_GRASP_VND_2FLIP KP GRASP variable neighborhood descent 2-flip
+function [found,x_star,R_delta,z_delta,X_lnd,Z_lnd] = kp_vnd_2flip(x0,n,W,A,R,b,z)
+%KP_VND_2FLIP KP Variable neighborhood descent 2-flip
 %
 %   Inputs:
 %   x0 - Solution
