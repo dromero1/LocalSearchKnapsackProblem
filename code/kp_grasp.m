@@ -38,12 +38,12 @@ while toc - t0 <= mt
         % Save local search solutions
         n_star = size(X_star,1);
         for j = 1:n_star
-            % Save local search solution
+            % Local search solution
             x_star = X_star(j,:);
             X(i,:) = x_star;
             % Determine feasibility
             fea = sum(A*x_star' <= b)/m;
-            % Save local search objective values
+            % Local search objective values
             Z(i,:) = [(W*x_star')' fea];
             if fea == 1
                 fc = fc + 1;
