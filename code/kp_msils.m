@@ -64,13 +64,13 @@ while toc - t0 <= mt
                         % Twice-improved solution
                         x_prime = X_prime(l,:);
                         z_prime = W*x_prime';
-                        % Determine if the perturbed solution dominates the
-                        % local optimum
+                        % Determine if the twice-improved solution
+                        % dominates the local optimum
                         if prod(z_star>=z_prime) == 1 && sum(z_star>z_prime) >= 1
                             x_star = x_prime';
                             z_star = z_prime;
-                            % Determine if the the perturbed is not
-                            % dominated by the current pareto front
+                            % Determine if the the twice-improved solution
+                            % is not dominated by the local optimum
                         elseif ~(prod(z_star>=z_prime) == 1 && sum(z_star>z_prime) >= 1)
                             % Save local non-dominated solution
                             X_lnd = [X_lnd; x_prime];

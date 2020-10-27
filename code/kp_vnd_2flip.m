@@ -63,7 +63,7 @@ for i = 1:n
                             z_star = z_prime;
                         end
                         % Determine if the new solution is not
-                        % dominated by the current pareto front
+                        % dominated by the current solution
                     elseif ~(prod(z>=z_prime) == 1 && sum(z>z_prime) >= 1)
                         % Apply movement
                         x_nd = x;
