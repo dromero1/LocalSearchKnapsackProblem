@@ -22,7 +22,7 @@ input_file = 'files/Input.xlsx';
 output_file = 'files/Output.xlsx';
 
 % Debug mode
-dbg = false;
+dbg = true;
 
 %% Results
 rT = zeros(IC,1);
@@ -57,14 +57,30 @@ for i = 1:IC
     MR = [];
     mid = 1;
     % GRASP method
+%     for alpha = [0.05 0.15 0.25]
+%         % Get solutions
+%         tic
+%         [X,Z] = kp_grasp(i,n,p,m,W,A,b,alpha,dbg);
+%         time = toc;
+%         % Save results
+%         mr.mid = mid;
+%         mr.mtd = sprintf('G-%0.2f',alpha);
+%         mr.X = X;
+%         mr.Z = Z;
+%         mr.t = time;
+%         MR = [MR; mr];
+%         % Update method instance id
+%         mid = mid + 1;
+%     end
+    % MS-ILS GRASP method
     for alpha = [0.05 0.15 0.25]
         % Get solutions
         tic
-        [X,Z] = kp_grasp(i,n,p,m,W,A,b,alpha,dbg);
+        [X,Z] = kp_msils(i,n,p,m,W,A,b,alpha,dbg);
         time = toc;
         % Save results
         mr.mid = mid;
-        mr.mtd = sprintf('G-%0.2f',alpha);
+        mr.mtd = sprintf('MS-ILS-G-%0.2f',alpha);
         mr.X = X;
         mr.Z = Z;
         mr.t = time;

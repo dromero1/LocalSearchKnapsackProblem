@@ -34,14 +34,17 @@ while toc - t0 <= mt
     [x,fea,~] = kp_grasp_construct_solution(n,m,W,A,b,alpha);
     if fea == 1
         % Variable neighborhood descent
-        lX = kp_grasp_vnd(x,n,m,W,A,b,t0,mt);
+        X_star = kp_vnd(x,n,m,W,A,b,t0,mt);
         % Save local search solutions
-        ln = size(lX,1);
-        for j = 1:ln
-            lx = lX(j,:);
-            X(i,:) = lx;
-            fea = sum(A*lx' <= b)/m;
-            Z(i,:) = [(W*lx')' fea];
+        n_star = size(X_star,1);
+        for j = 1:n_star
+            % Save local search solution
+            x_star = X_star(j,:);
+            X(i,:) = x_star;
+            % Determine feasibility
+            fea = sum(A*x_star' <= b)/m;
+            % Save local search objective values
+            Z(i,:) = [(W*x_star')' fea];
             if fea == 1
                 fc = fc + 1;
             end
