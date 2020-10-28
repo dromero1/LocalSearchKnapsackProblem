@@ -28,7 +28,7 @@ output_file = 'files/Output.xlsx';
 dbg = false;
 
 % Maximum execution time
-mt = 3;
+mt = 30;
 
 %% Results
 rT = zeros(IC,1);
