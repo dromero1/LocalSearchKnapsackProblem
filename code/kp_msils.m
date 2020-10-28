@@ -1,4 +1,4 @@
-function [X,Z] = kp_msils(ti,n,p,m,W,A,b,alpha,mt,dbg)
+function [X,Z] = kp_msils(ti,n,p,m,W,A,b,alpha,J,mt,dbg)
 %KP_MSILS MS-ILS approximation to the knapsack problem
 %
 %   Inputs:
@@ -10,6 +10,7 @@ function [X,Z] = kp_msils(ti,n,p,m,W,A,b,alpha,mt,dbg)
 %   A - Constraint coefficients
 %   b - Resource capacity
 %   alpha - Best candidate percentage
+%   J - Number of neighborhoods
 %   mt - Maximum execution time
 %   dbg - Debug mode
 %
@@ -35,7 +36,7 @@ while toc - t0 <= mt
     [x,fea,~] = kp_grasp_construct_solution(n,m,W,A,b,alpha);
     if fea == 1
         % Variable neighborhood descent
-        X_star = kp_vnd(x,n,m,W,A,b,t0,mt);
+        X_star = kp_vnd(x,n,m,W,A,b,J,t0,mt);
         n_star = size(X_star,1);
         % Improve local optimal solutions
         for j = 1:n_star
@@ -56,7 +57,7 @@ while toc - t0 <= mt
                 % Determine if the pertubated solution is feasible
                 if A*x_prime <= b
                     % Variable neighborhood descent
-                    X_prime = kp_vnd(x_prime,n,m,W,A,b,t0,mt);
+                    X_prime = kp_vnd(x_prime,n,m,W,A,b,J,t0,mt);
                     n_prime = size(X_prime,1);
                     for l = 1:n_prime
                         % Twice-improved solution

@@ -1,4 +1,4 @@
-function X = kp_vnd(x0,n,m,W,A,b,t0,mt)
+function X = kp_vnd(x0,n,m,W,A,b,J,t0,mt)
 %KP_VND KP Variable neighborhood descent
 %
 %   Inputs:
@@ -8,6 +8,7 @@ function X = kp_vnd(x0,n,m,W,A,b,t0,mt)
 %   W - Objective coefficients
 %   A - Constraint coefficients
 %   b - Resource capacity
+%   J - Number of neighborhoods
 %   t0 - Initial time
 %   mt - Maximum execution time
 %
@@ -38,7 +39,7 @@ while sol >= 1 && toc - t0 <= mt
     Z_lnd = [];
     % Variable neighborhood search
     j = 1;
-    while j <= 3 && toc - t0 <= mt
+    while j <= J && toc - t0 <= mt
         if j == 1
             [found,x_star,R_delta,z_delta,X_nd,Z_nd] = kp_vnd_1add(x,n,W,A,R,b,z);
         elseif j == 2

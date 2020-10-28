@@ -18,6 +18,9 @@ function MR = kp_scenario1(ti,n,p,m,W,A,b,mt,dbg)
 % Results collection
 MR = [];
 
+% Number of neighborhoods
+J = 3;
+
 % Method id
 mid = 1;
 
@@ -40,7 +43,7 @@ mid = mid + 1;
 for alpha = [0.05 0.15 0.25]
     % Get solutions
     tic
-    [X,Z] = kp_grasp(ti,n,p,m,W,A,b,alpha,mt,dbg,false);
+    [X,Z] = kp_grasp(ti,n,p,m,W,A,b,alpha,J,mt,dbg,false);
     time = toc;
     % Save results
     mr.mid = mid;
@@ -57,7 +60,7 @@ end
 for alpha = [0.05 0.15 0.25]
     % Get solutions
     tic
-    [X,Z] = kp_grasp(ti,n,p,m,W,A,b,alpha,mt,dbg,true);
+    [X,Z] = kp_grasp(ti,n,p,m,W,A,b,alpha,J,mt,dbg,true);
     time = toc;
     % Save results
     mr.mid = mid;
@@ -74,7 +77,7 @@ end
 for alpha = [0.05 0.15 0.25]
     % Get solutions
     tic
-    [X,Z] = kp_msils(ti,n,p,m,W,A,b,alpha,mt,dbg);
+    [X,Z] = kp_msils(ti,n,p,m,W,A,b,alpha,J,mt,dbg);
     time = toc;
     % Save results
     mr.mid = mid;
