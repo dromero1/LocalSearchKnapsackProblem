@@ -20,7 +20,7 @@ function [X,Z] = kp_msils(ti,n,p,m,W,A,b,alpha,dbg)
 mt = 300;
 
 % Number of perturbations per solution
-pt = 100;
+pt = 1000;
 
 % Initial time
 t0 = toc;

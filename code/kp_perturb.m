@@ -8,8 +8,8 @@ function x_p = kp_perturb(x,n)
 %   Outputs:
 %   x_p - Perturbed solution
 
-% Get 4 random indexes to flip
-idx = randperm(n,4);
+% Get 5 random indexes to flip
+idx = randperm(n,5);
 
 % Perturbed solution
 x_p = x;
