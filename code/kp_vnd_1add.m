@@ -1,5 +1,5 @@
-function [found,x_star,R_delta,z_delta,X_lnd,Z_lnd] = kp_vnd_1flip(x0,n,W,A,R,b,z)
-%KP_VND_1FLIP KP Variable neighborhood descent 1-flip
+function [found,x_star,R_delta,z_delta,X_lnd,Z_lnd] = kp_vnd_1add(x0,n,W,A,R,b,z)
+%KP_VND_1ADD KP Variable neighborhood descent 1-add
 %
 %   Inputs:
 %   x0 - Solution
