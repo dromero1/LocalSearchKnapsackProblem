@@ -84,7 +84,7 @@ for i = 1:n
 end
 
 if found == true
-    % Apply best movement
+    % Get best movement
     i = b_move(1);
     j = b_move(2);
     % Update best solution
