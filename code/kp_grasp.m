@@ -1,4 +1,4 @@
-function [X,Z] = kp_grasp(ti,n,p,m,W,A,b,alpha,dbg)
+function [X,Z] = kp_grasp(ti,n,p,m,W,A,b,alpha,mt,dbg,ls)
 %KP_GRASP GRASP method approximation to the knapsack problem
 %
 %   Inputs:
@@ -10,14 +10,13 @@ function [X,Z] = kp_grasp(ti,n,p,m,W,A,b,alpha,dbg)
 %   A - Constraint coefficients
 %   b - Resource capacity
 %   alpha - Best candidate percentage
+%   mt - Maximum execution time
 %   dbg - Debug mode
+%   ls - Locasl search mode
 %
 %   Outputs:
 %   X - Solutions
 %   Z - Objective values
-
-% Maximum execution time
-mt = 300;
 
 % Initial time
 t0 = toc;
@@ -32,34 +31,43 @@ i = 1;
 while toc - t0 <= mt
     % Randomized constructive solution
     [x,fea,~] = kp_grasp_construct_solution(n,m,W,A,b,alpha);
-    if fea == 1
-        % Variable neighborhood descent
-        X_star = kp_vnd(x,n,m,W,A,b,t0,mt);
-        % Save local search solutions
-        n_star = size(X_star,1);
-        for j = 1:n_star
-            % Local search solution
-            x_star = X_star(j,:);
-            X(i,:) = x_star;
-            % Determine feasibility
-            fea = sum(A*x_star' <= b)/m;
-            % Local search objective values
-            Z(i,:) = [(W*x_star')' fea];
-            if fea == 1
-                fc = fc + 1;
+    if ls == true
+        if fea == 1
+            % Variable neighborhood descent
+            X_star = kp_vnd(x,n,m,W,A,b,t0,mt);
+            % Save local search solutions
+            n_star = size(X_star,1);
+            for j = 1:n_star
+                % Local search solution
+                x_star = X_star(j,:);
+                X(i,:) = x_star;
+                % Determine feasibility
+                fea = sum(A*x_star' <= b)/m;
+                % Local search objective values
+                Z(i,:) = [(W*x_star')' fea];
+                if fea == 1
+                    fc = fc + 1;
+                end
+                % Display
+                if dbg == true
+                    fprintf('GRASP Instance %d (alpha = %0.2f, ',ti,alpha);
+                    fprintf('rep. = %d, feas. = %0.2f)\n',i,fea);
+                end
+                i = i + 1;
             end
-            % Display
-            if dbg == true
-                fprintf('GRASP Instance %d (alpha = %0.2f, ',ti,alpha);
-                fprintf('rep. = %d, feas. = %0.2f)\n',i,fea);
-            end
+        else
+            % Save unfeasible solution
+            X(i,:) = x;
+            Z(i,:) = [(W*x)' fea];
             i = i + 1;
         end
     else
-        % Save unfeasible solution
+        % Save solution
         X(i,:) = x;
         Z(i,:) = [(W*x)' fea];
-        i = i + 1;
+        if fea == 1
+            fc = fc + 1;
+        end
     end
 end
 

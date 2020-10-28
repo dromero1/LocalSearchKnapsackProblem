@@ -1,4 +1,4 @@
-function [X,Z] = kp_msils(ti,n,p,m,W,A,b,alpha,dbg)
+function [X,Z] = kp_msils(ti,n,p,m,W,A,b,alpha,mt,dbg)
 %KP_MSILS MS-ILS approximation to the knapsack problem
 %
 %   Inputs:
@@ -10,14 +10,12 @@ function [X,Z] = kp_msils(ti,n,p,m,W,A,b,alpha,dbg)
 %   A - Constraint coefficients
 %   b - Resource capacity
 %   alpha - Best candidate percentage
+%   mt - Maximum execution time
 %   dbg - Debug mode
 %
 %   Outputs:
 %   X - Solutions
 %   Z - Objective values
-
-% Maximum execution time
-mt = 300;
 
 % Number of perturbations per solution
 pt = 1000;
