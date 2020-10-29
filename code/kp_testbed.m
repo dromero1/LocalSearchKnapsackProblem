@@ -95,7 +95,7 @@ for ti = 1:IC
     % Get non-dominated solutions
     [Ipo,~] = pareto_dominance(Z);
     PX = X(Ipo,:);
-    PF = F(Ipo,:);
+    PF = F(Ipo);
     cP = size(PX,1);
     % Upper bound
     ub = abs(W)*ones(n,1);
