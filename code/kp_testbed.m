@@ -110,7 +110,7 @@ for ti = 1:IC
         mr = MR(j,:);
         % Solution count
         cA = size(mr.Z,1);
-        cF = sum(mr.Z(:,p+1)==1);
+        cF = sum(mr.Z(:,p+1));
         % Solutions in Pareto Front
         IAP = intersect(mr.X,PX,'rows');
         cAP = size(IAP,1);
