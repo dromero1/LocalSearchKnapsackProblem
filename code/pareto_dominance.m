@@ -12,26 +12,26 @@ function [ND,D] = pareto_dominance(Y)
 n = size(Y,1);
 
 % Solutions
-X = (1:n)';
+x = (1:n)';
 
 % Dominated set
-D = [];
+D = false(n,1);
 
 % Main loop
 for i = 1:n
     for j = 1:n
-        if i ~= j
+        if i ~= j && D(j) == false
             if prod(Y(i,:)>=Y(j,:)) == 1 && sum(Y(i,:)>Y(j,:)) >= 1
-                D = [D; j];
+                D(j) = true;
             end
         end
     end
 end
 
 % Remove duplicates
-D = unique(D);
+D = find(D);
 
 % Non-dominated set
-ND = setdiff(X,D);
+ND = setdiff(x,D);
 
 end
