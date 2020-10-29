@@ -24,13 +24,10 @@ mid = 1;
 % Fixed alpha
 alpha = 0.15;
 
-% Number of neighborhoods
-J = 1;
-
 %% GRASP method
 % Get solutions
 tic
-[X,Z,nsol] = kp_grasp(ti,n,p,m,W,A,b,alpha,J,mt,dbg,false);
+[X,Z,nsol] = kp_grasp(ti,n,p,m,W,A,b,alpha,0,mt,dbg,false);
 time = toc;
 % Save results
 mr.mid = mid;
@@ -43,14 +40,14 @@ MR = [MR; mr];
 % Update method instance id
 mid = mid + 1;
 
-%% GRASP VND method
+%% GRASP VND1 method
 % Get solutions
 tic
-[X,Z,nsol] = kp_grasp(ti,n,p,m,W,A,b,alpha,J,mt,dbg,true);
+[X,Z,nsol] = kp_grasp(ti,n,p,m,W,A,b,alpha,1,mt,dbg,true);
 time = toc;
 % Save results
 mr.mid = mid;
-mr.mtd = sprintf('G-VND-%0.2f',alpha);
+mr.mtd = sprintf('G-VND1-%0.2f',alpha);
 mr.X = X;
 mr.Z = Z;
 mr.t = time;
