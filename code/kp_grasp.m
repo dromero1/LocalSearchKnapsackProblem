@@ -1,4 +1,4 @@
-function [X,Z] = kp_grasp(ti,n,p,m,W,A,b,alpha,J,mt,dbg,ls)
+function [X,Z,nsol] = kp_grasp(ti,n,p,m,W,A,b,alpha,J,mt,dbg,ls)
 %KP_GRASP GRASP method approximation to the knapsack problem
 %
 %   Inputs:
@@ -13,11 +13,12 @@ function [X,Z] = kp_grasp(ti,n,p,m,W,A,b,alpha,J,mt,dbg,ls)
 %   J - Number of neighborhoods
 %   mt - Maximum execution time
 %   dbg - Debug mode
-%   ls - Locasl search mode
+%   ls - Local search mode
 %
 %   Outputs:
 %   X - Solutions
 %   Z - Objective values
+%   nsol - Number of solutions
 
 % Initial time
 t0 = toc;
@@ -77,6 +78,9 @@ while toc - t0 <= mt
         i = i + 1;
     end
 end
+
+% Number of solutions
+nsol = i;
 
 % Remove duplicates
 [X,ix,~] = unique(X,'rows');

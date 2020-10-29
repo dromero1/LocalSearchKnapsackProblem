@@ -35,6 +35,7 @@ mr.mtd = sprintf('C');
 mr.X = x';
 mr.Z = [(W*x)' fea];
 mr.t = time;
+mr.nsol = 1;
 MR = [MR; mr];
 % Update method instance id
 mid = mid + 1;
@@ -43,7 +44,7 @@ mid = mid + 1;
 for alpha = [0.05 0.15 0.25]
     % Get solutions
     tic
-    [X,Z] = kp_grasp(ti,n,p,m,W,A,b,alpha,J,mt,dbg,false);
+    [X,Z,nsol] = kp_grasp(ti,n,p,m,W,A,b,alpha,J,mt,dbg,false);
     time = toc;
     % Save results
     mr.mid = mid;
@@ -51,6 +52,7 @@ for alpha = [0.05 0.15 0.25]
     mr.X = X;
     mr.Z = Z;
     mr.t = time;
+    mr.nsol = nsol;
     MR = [MR; mr];
     % Update method instance id
     mid = mid + 1;
@@ -60,7 +62,7 @@ end
 for alpha = [0.05 0.15 0.25]
     % Get solutions
     tic
-    [X,Z] = kp_grasp(ti,n,p,m,W,A,b,alpha,J,mt,dbg,true);
+    [X,Z,nsol] = kp_grasp(ti,n,p,m,W,A,b,alpha,J,mt,dbg,true);
     time = toc;
     % Save results
     mr.mid = mid;
@@ -68,6 +70,7 @@ for alpha = [0.05 0.15 0.25]
     mr.X = X;
     mr.Z = Z;
     mr.t = time;
+    mr.nsol = nsol;
     MR = [MR; mr];
     % Update method instance id
     mid = mid + 1;
@@ -77,7 +80,7 @@ end
 for alpha = [0.05 0.15 0.25]
     % Get solutions
     tic
-    [X,Z] = kp_msils(ti,n,p,m,W,A,b,alpha,J,mt,dbg);
+    [X,Z,nsol] = kp_msils(ti,n,p,m,W,A,b,alpha,J,mt,dbg);
     time = toc;
     % Save results
     mr.mid = mid;
@@ -85,6 +88,7 @@ for alpha = [0.05 0.15 0.25]
     mr.X = X;
     mr.Z = Z;
     mr.t = time;
+    mr.nsol = nsol;
     MR = [MR; mr];
     % Update method instance id
     mid = mid + 1;

@@ -30,7 +30,7 @@ J = 1;
 %% GRASP method
 % Get solutions
 tic
-[X,Z] = kp_grasp(ti,n,p,m,W,A,b,alpha,J,mt,dbg,false);
+[X,Z,nsol] = kp_grasp(ti,n,p,m,W,A,b,alpha,J,mt,dbg,false);
 time = toc;
 % Save results
 mr.mid = mid;
@@ -38,6 +38,7 @@ mr.mtd = sprintf('G-%0.2f',alpha);
 mr.X = X;
 mr.Z = Z;
 mr.t = time;
+mr.nsol = nsol;
 MR = [MR; mr];
 % Update method instance id
 mid = mid + 1;
@@ -45,7 +46,7 @@ mid = mid + 1;
 %% GRASP VND method
 % Get solutions
 tic
-[X,Z] = kp_grasp(ti,n,p,m,W,A,b,alpha,J,mt,dbg,true);
+[X,Z,nsol] = kp_grasp(ti,n,p,m,W,A,b,alpha,J,mt,dbg,true);
 time = toc;
 % Save results
 mr.mid = mid;
@@ -53,6 +54,7 @@ mr.mtd = sprintf('G-VND-%0.2f',alpha);
 mr.X = X;
 mr.Z = Z;
 mr.t = time;
+mr.nsol = nsol;
 MR = [MR; mr];
 
 end

@@ -1,4 +1,4 @@
-function [X,Z] = kp_msils(ti,n,p,m,W,A,b,alpha,J,mt,dbg)
+function [X,Z,nsol] = kp_msils(ti,n,p,m,W,A,b,alpha,J,mt,dbg)
 %KP_MSILS MS-ILS approximation to the knapsack problem
 %
 %   Inputs:
@@ -17,6 +17,7 @@ function [X,Z] = kp_msils(ti,n,p,m,W,A,b,alpha,J,mt,dbg)
 %   Outputs:
 %   X - Solutions
 %   Z - Objective values
+%   nsol - Number of solutions
 
 % Number of perturbations per solution
 pt = 1000;
@@ -124,6 +125,9 @@ while toc - t0 <= mt
         i = i + 1;
     end
 end
+
+% Number of solutions
+nsol = i;
 
 % Remove duplicates
 [X,ix,~] = unique(X,'rows');

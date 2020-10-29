@@ -27,7 +27,7 @@ alpha = 0.15;
 %% GRASP VND3 method
 % Get solutions
 tic
-[X,Z] = kp_grasp(ti,n,p,m,W,A,b,alpha,3,mt,dbg,true);
+[X,Z,nsol] = kp_grasp(ti,n,p,m,W,A,b,alpha,3,mt,dbg,true);
 time = toc;
 % Save results
 mr.mid = mid;
@@ -35,12 +35,13 @@ mr.mtd = sprintf('G-VND2-%0.2f',alpha);
 mr.X = X;
 mr.Z = Z;
 mr.t = time;
+mr.nsol = nsol;
 MR = [MR; mr];
 
 %% MS-ILS method
 % Get solutions
 tic
-[X,Z] = kp_msils(ti,n,p,m,W,A,b,alpha,3,mt,dbg);
+[X,Z,nsol] = kp_msils(ti,n,p,m,W,A,b,alpha,3,mt,dbg);
 time = toc;
 % Save results
 mr.mid = mid;
@@ -48,6 +49,7 @@ mr.mtd = sprintf('MS-ILS-G-%0.2f',alpha);
 mr.X = X;
 mr.Z = Z;
 mr.t = time;
+mr.nsol = nsol;
 MR = [MR; mr];
 
 end
