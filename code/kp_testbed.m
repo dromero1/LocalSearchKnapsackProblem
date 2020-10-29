@@ -99,8 +99,8 @@ for ti = 1:IC
     ub = abs(W)*ones(n,1);
     % Instance statistics
     fprintf('Instance %d - Statistics\n',ti);
-    fprintf('Number of solutions: %d\n',size(X,1));
-    fprintf('Number of feasible solutions: %d\n',fc);
+    fprintf('Number of non-dominated solutions: %d\n',size(X,1));
+    fprintf('Number of non-dominated feasible solutions: %d\n',fc);
     fprintf('Number of pareto-optimal solutions: %d\n',size(PX,1));
     fprintf('Number of feasible solutions in pareto front: %d\n',sum(PZ(:,p+1)==1));
     for j = 1:length(MR)
