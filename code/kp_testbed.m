@@ -104,7 +104,7 @@ for ti = 1:IC
     fprintf('Number of non-dominated solutions: %d\n',size(X,1));
     fprintf('Number of non-dominated feasible solutions: %d\n',fc);
     fprintf('Number of pareto-optimal solutions: %d\n',size(PX,1));
-    fprintf('Number of feasible solutions in pareto front: %d\n',sum(PF==1));
+    fprintf('Number of feasible solutions in pareto front: %d\n',sum(PF));
     for j = 1:length(MR)
         % Method's results
         mr = MR(j,:);
