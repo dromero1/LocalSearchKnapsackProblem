@@ -90,10 +90,12 @@ for ti = 1:IC
         X = X(If,:);
         Z = Z(If,:);
     end
+    F = Z(:,p+1);
+    Z = Z(:,1:p);
     % Get non-dominated solutions
     [Ipo,~] = pareto_dominance(Z);
     PX = X(Ipo,:);
-    PZ = Z(Ipo,:);
+    PF = F(Ipo,:);
     cP = size(PX,1);
     % Upper bound
     ub = abs(W)*ones(n,1);
@@ -102,7 +104,7 @@ for ti = 1:IC
     fprintf('Number of non-dominated solutions: %d\n',size(X,1));
     fprintf('Number of non-dominated feasible solutions: %d\n',fc);
     fprintf('Number of pareto-optimal solutions: %d\n',size(PX,1));
-    fprintf('Number of feasible solutions in pareto front: %d\n',sum(PZ(:,p+1)==1));
+    fprintf('Number of feasible solutions in pareto front: %d\n',sum(PF==1));
     for j = 1:length(MR)
         % Method's results
         mr = MR(j,:);
