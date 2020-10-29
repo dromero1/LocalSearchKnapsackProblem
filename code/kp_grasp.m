@@ -80,7 +80,7 @@ while toc - t0 <= mt
 end
 
 % Number of solutions
-nsol = i;
+nsol = i - 1;
 
 % Remove duplicates
 [X,ix,~] = unique(X,'rows');
