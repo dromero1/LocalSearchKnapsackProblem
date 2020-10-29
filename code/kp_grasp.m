@@ -69,6 +69,12 @@ while toc - t0 <= mt
         if fea == 1
             fc = fc + 1;
         end
+        % Display
+        if dbg == true
+            fprintf('GRASP Instance %d (alpha = %0.2f, ',ti,alpha);
+            fprintf('rep. = %d, feas. = %0.2f)\n',i,fea);
+        end
+        i = i + 1;
     end
 end
 
