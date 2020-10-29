@@ -28,7 +28,7 @@ output_file = 'files/Output.xlsx';
 dbg = false;
 
 % Maximum execution time
-mt = 30;
+mt = 3;
 
 %% Results
 rT = zeros(IC,1);
@@ -69,8 +69,6 @@ for ti = 1:IC
         MR = kp_scenario4(ti,n,p,m,W,A,b,mt,dbg);
     elseif s == 5
         MR = kp_scenario5(ti,n,p,m,W,A,b,mt,dbg);
-    elseif s == 6
-        MR = kp_scenario6(ti,n,p,m,W,A,b,mt,dbg);
     end
     %% Pareto front
     % Mix solutions
@@ -129,8 +127,8 @@ for ti = 1:IC
         rI2(ti,mr.mid) = i2;
         rDU(ti,mr.mid) = md2ub;
         % Display
-        fprintf('Method %s (time = %0.2f, sol. = %d, ',mr.mtd,mr.t,cA);
-        fprintf('fea. = %d, md2ub = %0.2f, ',cF,md2ub)
+        fprintf('Method %s (time = %0.3f, sol. %d, psol. = %d, ',mr.mtd,mr.t,mr.nsol,cA);
+        fprintf('pfea. = %d, md2ub = %0.2f, ',cF,md2ub)
         fprintf('I1 = %0.2f, I2 = %0.2f)\n',i1,i2);
     end
     %% Download results
