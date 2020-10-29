@@ -1,4 +1,4 @@
-function [rT,rS,rF,rFS,rI1,rI2,rDU] = kp_testbed(s)
+function [rT,rN,rS,rF,rFS,rI1,rI2,rDU] = kp_testbed(s)
 %KP_TESTBED Knapsack problem testbed
 %
 %   Inputs:
@@ -6,8 +6,9 @@ function [rT,rS,rF,rFS,rI1,rI2,rDU] = kp_testbed(s)
 %
 %   Outputs:
 %   rT - Processing times
-%   rS - Number of solutions
-%   rF - Number of feasible solutions
+%   rN - Number of solutions
+%   rS - Number of non-dominated solutions
+%   rF - Number of non-dominated feasible solutions
 %   rFS - Feasible share
 %   rI1 - Probability of generating solutions in the Pareto Front
 %   rI2 - Probability of generating non-dominated solutions
@@ -28,10 +29,11 @@ output_file = 'files/Output.xlsx';
 dbg = false;
 
 % Maximum execution time
-mt = 3;
+mt = 30;
 
 %% Results
 rT = zeros(IC,1);
+rN = zeros(IC,1);
 rS = zeros(IC,1);
 rF = zeros(IC,1);
 rFS = zeros(IC,1);
@@ -120,6 +122,7 @@ for ti = 1:IC
         md2ub = mean(d2ub,'all');
         % Save statistics
         rT(ti,mr.mid) = mr.t;
+        rN(ti,mr.mid) = mr.nsol;
         rS(ti,mr.mid) = cA;
         rF(ti,mr.mid) = cF;
         rFS(ti,mr.mid) = cF / cA;
