@@ -46,7 +46,7 @@ for ti = 1:IC
     %% Extraction
     % Raw problem
     P_raw = readmatrix(input_file,'Sheet',['I',num2str(ti)],'NumHeaderLines',0);
-    % Extraction
+    % Control record
     cr = P_raw(1,1:3);
     % Items count
     n = cr(1);
