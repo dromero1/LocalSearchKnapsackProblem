@@ -37,6 +37,8 @@ mr.Z = Z;
 mr.t = time;
 mr.nsol = nsol;
 MR = [MR; mr];
+% Update method instance id
+mid = mid + 1;
 
 %% GRASP VND2 method
 % Get solutions
