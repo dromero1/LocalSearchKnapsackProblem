@@ -43,11 +43,11 @@ mid = mid + 1;
 %% MS-ILS method
 % Get solutions
 tic
-[X,Z,nsol] = kp_msels(ti,n,p,m,W,A,b,alpha,3,mt,dbg);
+[X,Z,nsol] = kp_msils(ti,n,p,m,W,A,b,alpha,3,mt,dbg);
 time = toc;
 % Save results
 mr.mid = mid;
-mr.mtd = sprintf('MS-ELS-G-%0.2f',alpha);
+mr.mtd = sprintf('MS-ILS-G-%0.2f',alpha);
 mr.X = X;
 mr.Z = Z;
 mr.t = time;
