@@ -76,15 +76,15 @@ for alpha = [0.05 0.15 0.25]
     mid = mid + 1;
 end
 
-%% MS-ILS GRASP method
+%% MS-ELS GRASP method
 for alpha = [0.05 0.15 0.25]
     % Get solutions
     tic
-    [X,Z,nsol] = kp_msils(ti,n,p,m,W,A,b,alpha,J,mt,dbg);
+    [X,Z,nsol] = kp_msels(ti,n,p,m,W,A,b,alpha,J,mt,dbg);
     time = toc;
     % Save results
     mr.mid = mid;
-    mr.mtd = sprintf('MS-ILS-G-%0.2f',alpha);
+    mr.mtd = sprintf('MS-ELS-G-%0.2f',alpha);
     mr.X = X;
     mr.Z = Z;
     mr.t = time;

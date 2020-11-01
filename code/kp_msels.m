@@ -1,5 +1,5 @@
-function [X,Z,nsol] = kp_msils(ti,n,p,m,W,A,b,alpha,J,mt,dbg)
-%KP_MSILS MS-ILS approximation to the knapsack problem
+function [X,Z,nsol] = kp_msels(ti,n,p,m,W,A,b,alpha,J,mt,dbg)
+%KP_MSELS MS-ELS approximation to the knapsack problem
 %
 %   Inputs:
 %   ti - Test instance
@@ -92,7 +92,7 @@ while toc - t0 <= mt
             end
             % Display
             if dbg == true
-                fprintf('MS-ILS Instance %d (alpha = %0.2f, ',ti,alpha);
+                fprintf('MS-ELS Instance %d (alpha = %0.2f, ',ti,alpha);
                 fprintf('rep. = %d, feas. = %0.2f)\n',i,fea);
             end
             i = i + 1;
@@ -112,7 +112,7 @@ while toc - t0 <= mt
                 end
                 % Display
                 if dbg == true
-                    fprintf('MS-ILS Instance %d (alpha = %0.2f, ',ti,alpha);
+                    fprintf('MS-ELS Instance %d (alpha = %0.2f, ',ti,alpha);
                     fprintf('rep. = %d, feas. = %0.2f)\n',i,fea);
                 end
                 i = i + 1;
