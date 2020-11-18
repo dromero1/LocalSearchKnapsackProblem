@@ -16,7 +16,7 @@ Run the console program as follows:
 main
 ```
 
-The program will start displaying the approximation results.
+The program will prompt the results.
 
 ```
 Instance 1 - Statistics
