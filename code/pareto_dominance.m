@@ -20,10 +20,14 @@ D = false(n,1);
 % Main loop
 for i = 1:n
     if D(i) == false
-        for j = 1:n
-            if i ~= j && D(j) == false
-                if prod(Y(i,:)>=Y(j,:)) == 1 && sum(Y(i,:)>Y(j,:)) >= 1
+        for j = i+1:n
+            if D(j) == false
+                if D(j) == false && prod(Y(i,:)>=Y(j,:)) == 1 && sum(Y(i,:)>Y(j,:)) >= 1
                     D(j) = true;
+                end
+                if D(i) == false && prod(Y(j,:)>=Y(i,:)) == 1 && sum(Y(j,:)>Y(i,:)) >= 1
+                    D(i) = true;
+                    break;
                 end
             end
         end
