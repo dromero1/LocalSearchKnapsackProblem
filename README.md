@@ -1,6 +1,6 @@
 # LocalSearchKnapsackProblem
 
-A multi-start iterated local search for the multidimensional demand-constrained knapsack problem.
+*A multi-start iterated local search for the multidimensional demand-constrained knapsack problem*
 
 The knapsack problem has received considerable critical attention in the realms of combinatorial optimization as it provides the foundations for optimal discrete decision-making with limited resources. In this paper, a variant of the preceding problem, known as *multidimensional demand-constrained knapsack problem*, is examined by considering a set of resources with minimum use policies. In particular, this study proposes two local-search-based approaches, a 3-neighborhood *variable neighborhood descent* (VND) and a *multi-start iterated local search* (MS-ILS), to approximate the Pareto Front of 20 mid-size randomly generated instances. The developed meta-heuristics deliver promising results as significant improvements in the quality and diversity of the obtained non-dominated solutions are revealed with respect to unenhanced schemes. Experiments show a notable upgrade by applying local search mechanisms. However, results are inconclusive whether the proposed perturbation component is favorable.
 
