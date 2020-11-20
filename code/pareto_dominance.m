@@ -25,10 +25,10 @@ for i = 1:n
                 if D(j) == false && prod(Y(i,:)>=Y(j,:)) == 1 && sum(Y(i,:)>Y(j,:)) >= 1
                     D(j) = true;
                 end
-                if D(i) == false && prod(Y(j,:)>=Y(i,:)) == 1 && sum(Y(j,:)>Y(i,:)) >= 1
-                    D(i) = true;
-                    break;
-                end
+            end
+            if prod(Y(j,:)>=Y(i,:)) == 1 && sum(Y(j,:)>Y(i,:)) >= 1
+                D(i) = true;
+                break;
             end
         end
     end
