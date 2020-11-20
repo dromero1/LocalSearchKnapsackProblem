@@ -1,5 +1,5 @@
 function x_p = kp_perturb(x,n)
-%KP_PERTURB Perturb knapsack problem soltuion
+%KP_PERTURB Perturb knapsack problem solution
 %
 %   Inputs:
 %   x - Solution to perturb
