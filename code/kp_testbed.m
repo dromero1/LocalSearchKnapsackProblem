@@ -132,7 +132,7 @@ for ti = 1:IC
         rI2(ti,mr.mid) = i2;
         rDU(ti,mr.mid) = md2ub;
         % Display
-        fprintf('Method %s (time = %0.3f, sol. %d, psol. = %d, ',mr.mtd,mr.t,mr.nsol,cA);
+        fprintf('Method %s (time = %0.4f, sol. %d, psol. = %d, ',mr.mtd,mr.t,mr.nsol,cA);
         fprintf('pfea. = %d, md2ub = %0.2f, ',cF,md2ub)
         fprintf('I1 = %0.2f, I2 = %0.2f)\n',i1,i2);
     end
