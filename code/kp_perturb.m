@@ -16,7 +16,7 @@ x_p = x;
 
 % Flip items
 for i = idx
-   x_p(i) = ~x_p(i); 
+    x_p(i) = ~x_p(i);
 end
 
 end

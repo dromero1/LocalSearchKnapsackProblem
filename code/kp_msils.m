@@ -51,7 +51,7 @@ while toc - t0 <= mt
             for k = 1:pt
                 % Check time
                 if toc - t0 > mt
-                   break;
+                    break;
                 end
                 % Perturb solution
                 x_prime = kp_perturb(x_star,n);
