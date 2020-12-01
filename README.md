@@ -1,4 +1,4 @@
-# LocalSearchKnapsackProblem
+# local-search-knapsack-problem
 
 *A multi-start iterated local search for the multidimensional demand-constrained knapsack problem*
 
