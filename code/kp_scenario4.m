@@ -1,5 +1,5 @@
 function MR = kp_scenario4(ti,n,p,m,W,A,b,mt,dbg)
-%KP_SCENARIO4 Component comparison - 3 neighborhood
+%KP_SCENARIO4 Component comparison - 3 neighborhoods
 %
 %   Inputs:
 %   ti - Test instance
