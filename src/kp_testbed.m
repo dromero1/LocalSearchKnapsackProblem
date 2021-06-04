@@ -22,8 +22,8 @@ rng('default');
 IC = 20;
 
 % Filenames
-input_file = 'files/Input.xlsx';
-output_file = 'files/Output.xlsx';
+input_file = 'data/input.xlsx';
+output_file = 'data/output.xlsx';
 
 % Debug mode
 dbg = false;
