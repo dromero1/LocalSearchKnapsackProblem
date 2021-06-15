@@ -1,12 +1,24 @@
 # local-search-knapsack-problem
 
-*A multi-start iterated local search for the multidimensional demand-constrained knapsack problem*
+_A multi-start iterated local search for the multidimensional demand-constrained knapsack problem_
 
-The knapsack problem has received considerable critical attention in the realms of combinatorial optimization as it provides the foundations for optimal discrete decision-making with limited resources. In this paper, a variant of the preceding problem, known as *multidimensional demand-constrained knapsack problem*, is examined by considering a set of resources with minimum use policies. In particular, this study proposes two local-search-based approaches, a 3-neighborhood *variable neighborhood descent* (VND) and a *multi-start iterated local search* (MS-ILS), to approximate the Pareto Front of 20 mid-size randomly generated instances. The developed meta-heuristics deliver promising results as significant improvements in the quality and diversity of the obtained non-dominated solutions are revealed with respect to unenhanced schemes. Experiments show a notable upgrade by applying local search mechanisms. However, results are inconclusive whether the proposed perturbation component is favorable.
+The knapsack problem has received considerable critical attention in the realms of combinatorial optimization as it provides the foundations for optimal discrete decision-making with limited resources. In this paper, a variant of the preceding problem, known as _multidimensional demand-constrained knapsack problem_, is examined by considering a set of resources with minimum use policies. In particular, this study proposes two local-search-based approaches, a 3-neighborhood _variable neighborhood descent_ (VND) and a _multi-start iterated local search_ (MS-ILS), to approximate the Pareto Front of 20 mid-size randomly generated instances. The developed meta-heuristics deliver promising results as significant improvements in the quality and diversity of the obtained non-dominated solutions are revealed with respect to unenhanced schemes. Experiments show a notable upgrade by applying local search mechanisms. However, results are inconclusive whether the proposed perturbation component is favorable.
 
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Installing
+
+1. Download the most recent MATLAB version at this [link](https://www.mathworks.com/products/matlab.html).
+2. Clone this repo to MATLAB's workspace folder.
+
+```
+git clone https://github.com/daromi94/local-search-knapsack-problem.git
+```
+
+3. Run the `main` file.
+4. Enjoy!
 
 ### Usage
 
